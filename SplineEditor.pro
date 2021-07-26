@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     GUI/addnewspline.cpp \
+    GUI/knotsetting.cpp \
     GUI/mainwindow.cpp \
     GUI/setting.cpp \
     GUI/splinedisplay.cpp \
@@ -21,12 +22,14 @@ SOURCES += \
 
 HEADERS += \
     GUI/addnewspline.h \
+    GUI/knotsetting.h \
     GUI/mainwindow.h \
     GUI/setting.h \
     GUI/splinedisplay.h \
     GUI/splinesetting.h \
     Spline/knot.h \
     Spline/spline.h \
+    Spline/splineVisualing.h \
     Spline/splinehandler.h
 
 # Default rules for deployment.

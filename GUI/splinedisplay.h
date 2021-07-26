@@ -2,15 +2,29 @@
 #define SPLINEDISPLAY_H
 
 #include <QWidget>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGridLayout>
+#include <QTimer>
+#include <Spline/splinehandler.h>
+
 
 class SplineDisplay : public QWidget
 {
     Q_OBJECT
+private:
+    SplineHandler* handler;
 public:
-    explicit SplineDisplay(QWidget *parent = nullptr);
+    explicit SplineDisplay(SplineHandler* handlerIn, QWidget *parent = nullptr);
+    QGraphicsScene *scene;
+    QGridLayout *layout;
+    QGraphicsView *view;
+    QTimer *updater;
 
 signals:
 
+private slots:
+    void repaint();
 };
 
 #endif // SPLINEDISPLAY_H

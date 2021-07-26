@@ -34,10 +34,13 @@ AddNewSpline::AddNewSpline(QColorDialog* getColorIn, SplineHandler* handlerIn, Q
     setLayout(layout);
 }
 
+
+
 void AddNewSpline::addSpline()
 {
     handler -> addSpline(changedColor, nameIn -> text(), changedAlgorithm);
     close();
+    updateSplines();
 }
 
 

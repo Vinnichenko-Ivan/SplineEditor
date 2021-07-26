@@ -35,7 +35,7 @@ public:
 
 
 signals:
-
+    void updateSplines();
 private slots:
     void addSpline();
 

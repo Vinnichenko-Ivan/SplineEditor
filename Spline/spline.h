@@ -10,9 +10,12 @@ class Spline
 {
 public:
     Spline(QColor colorIn = QColor(0,0,255), QString nameIn = "def");
-    std::vector<Knot> knots;
+    std::vector<Knot*> knots;
     QColor color;
     QString name;
+    bool line;
+    bool visible;
+    bool knotVisible;
 };
 
 #endif // SPLINE_H

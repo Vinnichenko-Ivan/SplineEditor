@@ -2,12 +2,32 @@
 #define SPLINESETTING_H
 
 #include <QWidget>
+#include <QGridLayout>
+#include <QPushButton>
+#include <QComboBox>
+#include <QCheckBox>
+#include <QLabel>
+#include <QDebug>
+#include <GUI/knotsetting.h>
+#include <Spline/splinehandler.h>
 
 class SplineSetting : public QWidget
 {
     Q_OBJECT
+private:
+    QGridLayout *layout;
+    QComboBox *splineEdit;
+    SplineHandler *handler;
+    QCheckBox *checkTestLine;
+    QPushButton *deleteSpline;
+    KnotSetting *knotSetting;
+    int editSpline;
 public:
-    explicit SplineSetting(QWidget *parent = nullptr);
+    explicit SplineSetting(SplineHandler* handlerIn, QWidget *parent = nullptr);
+
+public slots:
+    void updateEditSplines();
+    void updateSplineSetting();
 
 signals:
 

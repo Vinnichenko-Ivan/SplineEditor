@@ -9,19 +9,20 @@
 #include <GUI/splinedisplay.h>
 #include <GUI/splinesetting.h>
 #include <GUI/addnewspline.h>
+
 #include <Spline/splinehandler.h>
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:
-    QColorDialog* getColor;
-    Setting* setting;
-    SplineDisplay* splineDisplay;
-    SplineSetting* splineSetting;
-    AddNewSpline* addSpline;
+    QColorDialog *getColor;
+    Setting *setting;
+    SplineDisplay *splineDisplay;
+    SplineSetting *splineSetting;
+    AddNewSpline *addSpline;
     QDockWidget *dockWidgetSetting;
     QDockWidget *dockWidgetSplineSetting;
-    SplineHandler* handler;
+    SplineHandler *handler;
 public:
 
     MainWindow(QWidget *parent = nullptr);
