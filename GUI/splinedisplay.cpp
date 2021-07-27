@@ -17,6 +17,8 @@ SplineDisplay::SplineDisplay(SplineHandler* handlerIn, QWidget *parent) : QWidge
     updater = new QTimer(this);
     connect(updater, &QTimer::timeout, this, &SplineDisplay::repaint);
     updater->start(100);
+    view -> setInteractive(true);
+    view -> setRenderHint(QPainter::Antialiasing);
     //this -> saveGeometry()
 //    QPalette p(palette());
 //    p.setColor(QPalette::Background, Qt::black);
@@ -27,10 +29,12 @@ SplineDisplay::SplineDisplay(SplineHandler* handlerIn, QWidget *parent) : QWidge
 
 void SplineDisplay::repaint()
 {
+    //view->fitInView(std::max(scene->itemsBoundingRect(),QRectF(0,0,300,300)),Qt::KeepAspectRatio);
+    //view->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio);
     scene -> clear();
     QPen cord(Qt::black);
-    scene -> addLine(-10000, 0, 10000, 0, cord);
-    scene -> addLine(0, -10000, 0, 10000, cord);
+    //scene -> addLine(-10000, 0, 10000, 0, cord);
+    //scene -> addLine(0, -10000, 0, 10000, cord);
     for(auto &n : handler -> splines)
     {
         QPen pen(n -> color);
@@ -54,4 +58,9 @@ void SplineDisplay::repaint()
             scene -> addLine(QLineF(temp[i - 1], temp[i]), pen);
         }
     }
+}
+
+void SplineDisplay::scale()
+{
+    view->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio);
 }

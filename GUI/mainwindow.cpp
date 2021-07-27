@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     
     //connect(setting -> addNewSpline, &QPushButton::clicked, addSpline, &QWidget::show);
     connect(addSpline, &AddNewSpline::updateSplines, splineSetting, &SplineSetting::updateEditSplines);
+    connect(setting -> scale, &QPushButton::clicked, splineDisplay, &SplineDisplay::scale);
     //splineSetting -> hide();
 }
 

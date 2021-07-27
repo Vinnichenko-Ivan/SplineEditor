@@ -6,7 +6,9 @@
 #include <QGraphicsView>
 #include <QGridLayout>
 #include <QTimer>
+#include <QRectF>
 #include <QLineF>
+#include <algorithm>
 #include <Spline/splinehandler.h>
 
 
@@ -21,11 +23,13 @@ public:
     QGridLayout *layout;
     QGraphicsView *view;
     QTimer *updater;
-
 signals:
 
 private slots:
     void repaint();
+
+public slots:
+    void scale();
 };
 
 #endif // SPLINEDISPLAY_H

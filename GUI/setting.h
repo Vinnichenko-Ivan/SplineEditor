@@ -14,8 +14,10 @@ class Setting : public QWidget
 public:
     explicit Setting(AddNewSpline* addNewSplineIn, QWidget *parent = nullptr);
     QPushButton *addNewSpline;
+    QPushButton *scale;
     QGridLayout *layout;
     AddNewSpline* addNewSplineDialog;
+
 
 signals:
 

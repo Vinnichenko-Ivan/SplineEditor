@@ -8,6 +8,7 @@
 #include <QCheckBox>
 #include <QLabel>
 #include <QDebug>
+#include <QRectF>
 #include <GUI/knotsetting.h>
 #include <Spline/splinehandler.h>
 
