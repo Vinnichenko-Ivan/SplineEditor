@@ -7,16 +7,17 @@ SplineHandler::SplineHandler()
 
 void SplineHandler::addSpline(QColor color, QString name, QString algorithm)
 {
-    if(algorithm == "default")
+    if(algorithm == "liner")
     {
         Spline *buff = new Spline(color, name);
         splines.push_back(buff);
     }
-    else if(algorithm == "liner")
+    else if(algorithm ==  "Konchak - Bartles")
     {
-        Spline *buff = new Spline(color, name);
+        SplineKonchakBartles *buff = new SplineKonchakBartles(color, name);
         splines.push_back(buff);
     }
+
     updateNames = true;
 }
 

@@ -6,6 +6,7 @@
 #include <QGraphicsView>
 #include <QGridLayout>
 #include <QTimer>
+#include <QLineF>
 #include <Spline/splinehandler.h>
 
 

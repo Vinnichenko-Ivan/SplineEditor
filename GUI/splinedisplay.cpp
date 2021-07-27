@@ -48,5 +48,10 @@ void SplineDisplay::repaint()
                 scene -> addLine(n -> knots[i - 1] -> x, -(n -> knots[i - 1] -> y), n -> knots[i] -> x, -(n -> knots[i] -> y), pen);
             }
         }
+        QVector<QPointF> temp = n -> getPoints();
+        for(int i = 1; i < temp.size(); i++)//Qvector работает с int, а не t size. был Waring
+        {
+            scene -> addLine(QLineF(temp[i - 1], temp[i]), pen);
+        }
     }
 }

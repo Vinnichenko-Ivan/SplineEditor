@@ -14,7 +14,7 @@ SplineSetting::SplineSetting(SplineHandler* handlerIn, QWidget *parent) : QWidge
     layout -> addWidget(knotSetting,3,0,1,9);
     connect(splineEdit, QOverload<int>::of(&QComboBox::activated), [=](){editSpline = splineEdit -> currentIndex(); knotSetting -> setIndexSpline(editSpline); updateSplineSetting();});
     connect(checkTestLine, QOverload<bool>::of(&QCheckBox::clicked), [=](bool test){handler -> setTestLine(editSpline, test); updateSplineSetting(); });
-    connect(deleteSpline, &QPushButton::clicked, [=](){ handler -> deleteSpline(editSpline); editSpline = -1; knotSetting -> setIndexSpline(editSpline); updateSplineSetting(); updateEditSplines();});
+    connect(deleteSpline, &QPushButton::clicked, [=](){ handler -> deleteSpline(editSpline); editSpline = -1; knotSetting -> setIndexSpline(-1); updateSplineSetting(); updateEditSplines();});
     editSpline = -1;
     setLayout(layout);
     updateSplineSetting();
@@ -38,7 +38,9 @@ void SplineSetting::updateSplineSetting()
         deleteSpline -> setEnabled(true);
         checkTestLine -> setEnabled(true);
         checkTestLine -> setChecked(handler -> getCheckLineFlag(editSpline));
+
     }
+
     else
     {
         deleteSpline -> setDisabled(true);

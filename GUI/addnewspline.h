@@ -26,7 +26,7 @@ private:
     QLabel* colorLable;
     QPalette *palette;
     QColor changedColor = QColor(0,0,255);
-    QString changedAlgorithm = "default";
+    QString changedAlgorithm = "liner";
 
 
 public:

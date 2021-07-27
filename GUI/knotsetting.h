@@ -1,6 +1,7 @@
 #ifndef KNOTSETTING_H
 #define KNOTSETTING_H
 
+#include <algorithm>
 #include <QWidget>
 #include <QGridLayout>
 #include <QDoubleSpinBox>
@@ -29,6 +30,8 @@ private:
     int indexSpline;
     double xData;
     double yData;
+    double data;
+    QString param;
 public:
     explicit KnotSetting(SplineHandler* handlerIn, QWidget *parent = nullptr);
     void updateKnot();

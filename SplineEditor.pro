@@ -15,6 +15,8 @@ SOURCES += \
     GUI/setting.cpp \
     GUI/splinedisplay.cpp \
     GUI/splinesetting.cpp \
+    Spline/Kochanek–Bartels/knotkonchakbartles.cpp \
+    Spline/Kochanek–Bartels/splinekonchakbartles.cpp \
     Spline/knot.cpp \
     Spline/spline.cpp \
     Spline/splinehandler.cpp \
@@ -27,6 +29,8 @@ HEADERS += \
     GUI/setting.h \
     GUI/splinedisplay.h \
     GUI/splinesetting.h \
+    Spline/Kochanek–Bartels/knotkonchakbartles.h \
+    Spline/Kochanek–Bartels/splinekonchakbartles.h \
     Spline/knot.h \
     Spline/spline.h \
     Spline/splineVisualing.h \

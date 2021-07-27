@@ -17,7 +17,9 @@ KnotSetting::KnotSetting(SplineHandler* handlerIn, QWidget *parent) : QWidget(pa
     connect(knotMenu, QOverload<int>::of(&QSpinBox::valueChanged),[=](int i){indexKnot = i; updateKnot();});
     connect(xIn, QOverload<double>::of(&QDoubleSpinBox::valueChanged),[=](double i){xData = i; updateKnotData();});
     connect(yIn, QOverload<double>::of(&QDoubleSpinBox::valueChanged),[=](double i){yData = i; updateKnotData();});
-    connect(addNewKnot, &QPushButton::clicked, [=](){handler -> splines[indexSpline] -> knots.push_back(new Knot());updateKnot();});
+    connect(parametrDataIn, QOverload<double>::of(&QDoubleSpinBox::valueChanged),[=](double i){data = i; updateKnotData();});
+    connect(parametrIn, QOverload<int>::of(&QComboBox::activated), [=](){param = parametrIn -> currentText(); data = handler -> splines[indexSpline] -> knots[indexKnot] -> parametrs[param]; parametrDataIn -> setValue(data);});
+    connect(addNewKnot, &QPushButton::clicked, [=](){handler -> splines[indexSpline]->addKnot(); updateKnot();});
     layout = new QGridLayout(this);
     layout -> addWidget(knot, 0, 0);
     layout -> addWidget(knotMenu, 0, 1);
@@ -32,6 +34,9 @@ KnotSetting::KnotSetting(SplineHandler* handlerIn, QWidget *parent) : QWidget(pa
     yIn -> setMaximum(10000);
     xIn -> setMinimum(-10000);
     yIn -> setMinimum(-10000);
+    parametrDataIn -> setMinimum(-10000);
+    parametrDataIn -> setMaximum(10000);
+    parametrDataIn -> setSingleStep(0.1);
     setLayout(layout);
     updateKnot();
 }
@@ -50,6 +55,20 @@ void KnotSetting::updateKnot()
         parametrIn -> setDisabled(true);
         parametrDataIn -> setDisabled(true);
     }
+
+    else if(handler -> splines[indexSpline] -> knots.size() == 0)
+    {
+        addNewKnot -> setEnabled(true);
+        knot -> setDisabled(true);
+        knotMenu -> setDisabled(true);
+        x -> setDisabled(true);
+        y -> setDisabled(true);
+        xIn -> setDisabled(true);
+        yIn -> setDisabled(true);
+        parametrIn -> setDisabled(true);
+        parametrDataIn -> setDisabled(true);
+    }
+
     else
     {
         addNewKnot -> setEnabled(true);
@@ -57,7 +76,7 @@ void KnotSetting::updateKnot()
         knotMenu -> setEnabled(true);
 
         knotMenu -> setMinimum(0);
-        knotMenu -> setMaximum(handler -> splines[indexSpline] -> knots.size() -1);
+        knotMenu -> setMaximum(std::max(int(handler -> splines[indexSpline] -> knots.size() -1), 0));
         if(indexKnot != -1)
         {
             x -> setEnabled(true);
@@ -71,13 +90,25 @@ void KnotSetting::updateKnot()
             xIn -> setValue(handler -> splines[indexSpline] -> knots[indexKnot] -> x);
             yIn -> setValue(handler -> splines[indexSpline] -> knots[indexKnot] -> y);
 
+            if(param != "")
+            {
+                data = handler -> splines[indexSpline] -> knots[indexKnot] -> parametrs[param];
+                parametrDataIn -> setValue(data);
+            }
+
+            parametrIn -> clear();
+            for(auto &n :  handler -> splines[indexSpline] -> knots[indexKnot] -> parametrs)
+            {
+                parametrIn -> addItem(n.first);
+            }
+
         }
         else
         {
             knotMenu -> setMinimum(0);
             knotMenu -> setValue(0);
             indexKnot = -1;
-            knotMenu -> setMaximum(handler -> splines[indexSpline] -> knots.size() -1);
+            knotMenu -> setMaximum(std::max(int(handler -> splines[indexSpline] -> knots.size() -1), 0));
             x -> setDisabled(true);
             y -> setDisabled(true);
             xIn -> setDisabled(true);
@@ -104,6 +135,7 @@ void KnotSetting::updateKnotData()
         {
             handler -> splines[indexSpline] -> knots[indexKnot] -> x = xData;
             handler -> splines[indexSpline] -> knots[indexKnot] -> y = yData;
+            handler -> splines[indexSpline] -> knots[indexKnot] -> parametrs[param] = data;
         }
         else
         {

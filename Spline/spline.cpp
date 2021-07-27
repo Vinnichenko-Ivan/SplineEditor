@@ -7,13 +7,22 @@ Spline::Spline(QColor colorIn, QString nameIn)
     line = false;
     visible = true;
     knotVisible = true;
-    Knot* k = new Knot;
-    k->x = 10;
-    k->y = 10;
-    knots.push_back(k);
+    templ = new Knot();
+    k = 10;
+}
 
-    Knot* l = new Knot;
-    l->x = 100;
-    l->y = 100;
-    knots.push_back(l);
+void Spline::addKnot()
+{
+    knots.push_back(new Knot());
+}
+
+
+QVector<QPointF> Spline::getPoints()
+{
+    QVector<QPointF> temp;
+//    for(auto &n : knots)
+//    {
+//        temp.push_back(QPoint(n -> x, - (n -> y)));// - для отображения знаю, что это не совсем верно
+//    }
+    return temp;
 }
